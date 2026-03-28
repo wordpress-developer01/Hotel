@@ -10,7 +10,7 @@ const AI = new OpenAI({
     apiKey: process.env.GEMINI_API_KEY,
     baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/"
 });
-
+//hi
 export const generateArticle = async (req, res)=>{
     try {
         const { userId } = req.auth();
