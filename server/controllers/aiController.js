@@ -50,27 +50,39 @@ export const generateArticle = async (req, res)=>{
 
 
     } catch (error) {
-        const status = error?.response?.status || 500;
-        const data = error?.response?.data;
+        const status =
+            error?.status ||
+            error?.response?.status ||
+            error?.cause?.status ||
+            500;
 
-        console.error('AI route error:', {
-            status,
-            data,
-            message: error.message,
-        });
+        const data =
+            error?.response?.data ||
+            error?.error ||
+            error?.cause ||
+            null;
+
+        const message =
+            error?.message ||
+            "Unknown error";
+
+        console.error("FULL AI ERROR:", error);
+        console.error("AI ERROR STATUS:", status);
+        console.error("AI ERROR DATA:", data);
+        console.error("AI ERROR MESSAGE:", message);
 
         if (status === 429) {
             return res.status(429).json({
-                code: 'RATE_LIMIT',
-                message: 'Too many requests or quota exceeded. Please try again later.',
-                provider: data || null,
+                code: "RATE_LIMIT",
+                message: "Слишком много запросов или исчерпана квота AI-провайдера.",
+                details: data,
             });
         }
 
-        return res.status(500).json({
-            code: 'INTERNAL_ERROR',
-            message: 'Content generation error',
-            details: data || error.message,
+        return res.status(status).json({
+            code: "AI_ERROR",
+            message,
+            details: data,
         });
     }
 }
@@ -110,27 +122,39 @@ export const generateBlogTitle = async (req, res)=>{
 
 
     } catch (error) {
-        const status = error?.response?.status || 500;
-        const data = error?.response?.data;
+        const status =
+            error?.status ||
+            error?.response?.status ||
+            error?.cause?.status ||
+            500;
 
-        console.error('AI route error:', {
-            status,
-            data,
-            message: error.message,
-        });
+        const data =
+            error?.response?.data ||
+            error?.error ||
+            error?.cause ||
+            null;
+
+        const message =
+            error?.message ||
+            "Unknown error";
+
+        console.error("FULL AI ERROR:", error);
+        console.error("AI ERROR STATUS:", status);
+        console.error("AI ERROR DATA:", data);
+        console.error("AI ERROR MESSAGE:", message);
 
         if (status === 429) {
             return res.status(429).json({
-                code: 'RATE_LIMIT',
-                message: 'Too many requests or quota exceeded. Please try again later.',
-                provider: data || null,
+                code: "RATE_LIMIT",
+                message: "Слишком много запросов или исчерпана квота AI-провайдера.",
+                details: data,
             });
         }
 
-        return res.status(500).json({
-            code: 'INTERNAL_ERROR',
-            message: 'Content generation error',
-            details: data || error.message,
+        return res.status(status).json({
+            code: "AI_ERROR",
+            message,
+            details: data,
         });
     }
 }
