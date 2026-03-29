@@ -1,4 +1,4 @@
-````md
+
 # QuickAI-Full-Stack
 
 An AI platform for generating articles, images, and handling other creative tasks, with authentication via Clerk and data storage in Postgres (NeonDB).
@@ -22,7 +22,7 @@ An AI platform for generating articles, images, and handling other creative task
 ```sh
 git clone https://github.com/wordpress-developer01/Hotel.git
 cd QuickAI-Full-Stack
-````
+
 
 ### 2. Configure environment variables
 
