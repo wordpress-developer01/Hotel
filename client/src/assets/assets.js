@@ -11,7 +11,6 @@ import ai_gen_img_3 from "./ai_gen_img_3.png";
 
 export const assets = {
     logo,
-    gradientBackground,
     user_group,
     star_icon,
     star_dull_icon,
